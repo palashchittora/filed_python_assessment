@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Bank Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+    <h2>Enter Details</h2>
+    <form action="" method="post" role="form">
+        {{ form.csrf_token }}
+    <div class="form-group">
+          <label for="CreditCardNumber">Credit Card number: </label>
+    <input type="text" class="form-control" id="CreditCardNumber" name="CreditCardNumber" placeholder="Enter your credit card number without spaces">
+          <label for="CardHolder">Card holder: </label>
+    <input type="text" class="form-control" id="CardHolder" name="CardHolder" placeholder="Enter your name">
+          <label for="ExpirationDate">Expiration date: </label>
+    <input type="date" class="form-control" id="ExpirationDate" name="ExpirationDate" placeholder="Enter expiry date">
+          <label for="SecurityCode">Security code: </label>
+    <input type="text" class="form-control" id="SecurityCode" name="SecurityCode" placeholder="Enter 3 digit code">
+          <label for="Amount">Amount: </label>
+    <input type="number" step="any" min="0" class="form-control" id="Amount" name="Amount" placeholder="Enter Amount">
+    </div>
+    <button type="submit" class="btn btn-success">Process Payment</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+
+    {% for message in messages %}
+    {% if "Error" not in message[1]: %}
+    <div class="alert alert-info">
+                    <strong>Success! </strong> {{ message[1] }}</div>
+    {% endif %}
+
+    {% if "Error" in message[1]: %}
+    <div class="alert alert-warning">
+                    {{ message[1] }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    </div>
+  </body>
+</html>
+<!-- <title>Reusable Form Demo</title>
+        	 	<link rel="stylesheet" media="screen" href="static/bootstrap.min.css">
+        	 	<link rel="stylesheet" href="static/bootstrap-theme.min.css"> -->
